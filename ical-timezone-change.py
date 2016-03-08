@@ -11,10 +11,7 @@ dtendRegEx = re.compile('^(DTEND(;.*)?:)(.*)$')
 
 def fmt_ical_time(time):
     '''Returns the time in UTC timezone with 'Z' suffix.'''
-    time_str = time.astimezone(iso.UTC).isoformat()
-    utc_suffix = '+00:00'
-    assert time_str.endswith(utc_suffix)
-    return time_str[:-len(utc_suffix)] + 'Z'
+    return time.astimezone(iso.UTC).strftime('%Y%m%dT%H%M%SZ')
 
 def time_line_xform(regMatch, delta, idx):
     '''Transforms a reg-ex match object of a time line by delta.'''
